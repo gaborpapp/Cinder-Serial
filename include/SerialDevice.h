@@ -17,7 +17,7 @@
 #include <vector>
 #include <regex>
 
-#include "serial.h"
+#include "serial/serial.h"
 
 namespace Cinder { namespace Serial {
 
