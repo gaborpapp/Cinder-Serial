@@ -6,10 +6,20 @@ if( NOT TARGET Cinder-Serial )
 		${CINDER_SERIAL_ROOT_PATH}/lib/serial/src/serial.cc
 	)
 
-	if ( UNIX )
+	if ( APPLE )
+		list( APPEND CINDER_SERIAL_SOURCES
+			${CINDER_SERIAL_ROOT_PATH}/lib/serial/src/impl/unix.cc
+			${CINDER_SERIAL_ROOT_PATH}/lib/serial/src/impl/list_ports/list_ports_osx.cc
+		)
+	elseif ( UNIX )
 		list( APPEND CINDER_SERIAL_SOURCES
 			${CINDER_SERIAL_ROOT_PATH}/lib/serial/src/impl/unix.cc
 			${CINDER_SERIAL_ROOT_PATH}/lib/serial/src/impl/list_ports/list_ports_linux.cc
+		)
+	elseif ( WIN32 )
+		list( APPEND CINDER_SERIAL_SOURCES
+			${CINDER_SERIAL_ROOT_PATH}/lib/serial/src/impl/win.cc
+			${CINDER_SERIAL_ROOT_PATH}/lib/serial/src/impl/list_ports/list_ports_win.cc
 		)
 	endif()
 
